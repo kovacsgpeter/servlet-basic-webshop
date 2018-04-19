@@ -1,0 +1,11 @@
+th, td {
+    padding: 15px;
+    background: burlywood;
+    color: aqua;
+}
+table { position: absolute;
+        width: 10%;
+        background: burlywood}
+body {
+    background-color: beige;
+}

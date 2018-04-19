@@ -8,9 +8,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-//@WebServlet(name = "simpleServlet", urlPatterns = {"/"}, loadOnStartup = 1)
-public class ServletWithAnnotations extends HttpServlet{
-    /*private List<Item> itemPool = new ArrayList<>();
+@WebServlet(name = "simpleServlet", urlPatterns = {"/webshop"}, loadOnStartup = 1)
+public class WebShopServlet extends HttpServlet{
+    private List<Item> itemPool = new ArrayList<>();
 
     public void init() {
 
@@ -24,22 +24,35 @@ public class ServletWithAnnotations extends HttpServlet{
             throws IOException {
 
         PrintWriter out = response.getWriter();
-        String title = "GET method with parameters to display";
+        String title = "";
+        String pathVar = getServletContext().getRealPath("/") + "css/style.css";
 
+        //head
         out.println(
                 "<html>\n" +
-                        "<head><title>" + title + "</title></head>\n" +
+                        "<head><title>" + title + "</title>\n");
+        //links
+        out.println("<link rel='stylesheet' type='text/css' href='/styles/style.css' />");
+        out.println("</head>\n");
+
+
+        out.println(
                         "<body>\n" +
                         "<h1 align = \"center\">" + title + "</h1>\n" +
                         "<ul>\n"
         );
-        for (Item item: itemPool){
-            out.println("<p>"+item.toString() + "</P>");
-        }
+        //table
+        out.println("<table>");
+         for (Item item: itemPool){
+             out.println("<tr><td>"+item.nameToString() + "</td><td>" + item.priceToString() + "</td></tr>");
+         }
+        out.println("</table>");
 
         out.println("</ul>\n" +
-                "<div>Visit another servlet: <a href=\"/another\">Visit the other servlet</a></div>" +
+                "<div>Visit another servlet: <a href=\"/ItemStore\">Item Cart</a></div>" +
                 "</body></html>");
     }
-*/
+
 }
+
+

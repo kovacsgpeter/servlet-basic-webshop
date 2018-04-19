@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.codecool.servlet</groupId>
-    <artifactId>ServletAnnotation</artifactId>
+    <artifactId>WebShopServlet</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>ServletAnnotation</name>
+    <name>WebShopServlet</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,8 +23,9 @@
     </dependencies>
 
     <build>
-        <finalName>servletannotation</finalName>
+        <finalName>webshopservlet</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
+
 
         <plugins>
             <plugin>
