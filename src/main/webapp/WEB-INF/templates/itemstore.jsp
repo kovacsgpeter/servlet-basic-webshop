@@ -18,22 +18,22 @@
 
         <c:forEach items="${itemPool}" var="item">
             <tr><td><c:out value="${item.nameToString()}"/><br /></td><td><c:out value="${item.priceToString()}"/><br /></td><td>
-                <form action="${pageContext.request.contextPath}/webshop" method="post">
-                <input type="submit" name="button1add" value="add" />
+                <form action="${pageContext.request.contextPath}/itemstore" method="post">
 
-                <input type="hidden" name="buttonhd" value="${item.nameToString()}" />
+                    <input type="submit" name="button1rem" value="remove" />
+                    <input type="hidden" name="buttonhd" value="${item.nameToString()}" />
 
                 </form>
             </td></tr>
         </c:forEach>
-
+        <tr><td><c:out value="${sum}"/></td></tr>
 
     </table>
 
 
 
 </ul>
-<div id="link">Check Item Cart <a href="/itemstore">Item Cart</a></div>
+<div>Go back to Shop: <a href="/webshop">Shop</a></div>
 </body>
 
 </html>

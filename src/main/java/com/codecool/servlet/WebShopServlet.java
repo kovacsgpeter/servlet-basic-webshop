@@ -12,7 +12,7 @@ import java.util.List;
 
 @WebServlet(name = "simpleServlet", urlPatterns = {"/webshop"}, loadOnStartup = 1)
 public class WebShopServlet extends HttpServlet{
-    private static List<Item> itemPool = new ArrayList<>();
+    private static ArrayList<Item> itemPool = new ArrayList<>();
     private static List<String> itemPoolStrings = new ArrayList<>();
     public void init() {
 
@@ -35,26 +35,19 @@ public class WebShopServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean isOnItemStore = false;
 
-        System.out.println(itemPool.size());
-        //System.out.println(request.getParameter("buttonhd"));
-        ItemStore.addToItemList(returnItem(request.getParameter("buttonhd")));
-        itemPool.remove(returnItem(request.getParameter("buttonhd")));
-        System.out.println(itemPool.size());
+            ItemStore.addToItemList(Utils.returnItem(request.getParameter("buttonhd"), itemPool) );
+
+
+
+
+
         request.setAttribute("itemPool", itemPool);
         request.getRequestDispatcher("WEB-INF/templates/webshop.jsp").forward(request, response);
     }
 
-    private static Item returnItem(String elName) {
-        Item it = null;
-        for (Item item : itemPool) {
-            if (item.nameToString().equals(elName)) {
-                it= item;
-                System.out.println(it.nameToString());
-            }
-            }
-        return it;
-    }
+
 
 }
 

@@ -10,11 +10,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-@WebServlet(name = "ItemStore", urlPatterns = {"/ItemStore"}, loadOnStartup = 2)
+@WebServlet(name = "ItemStore", urlPatterns = {"/itemstore"}, loadOnStartup = 2)
 public class ItemStore extends HttpServlet {
-    private static List<Item> itemList = new ArrayList<>();
+    public static ArrayList<Item> itemList = new ArrayList<>();
     //private
 
+    public static float getSum() {
+        float sum = 0;
+        for (Item item: itemList) {
+            sum += item.getPrice();
+        }
+        return sum;
+    }
 
     public static void addToItemList(Item item) {
         ItemStore.itemList.add(item);
@@ -32,9 +39,24 @@ public class ItemStore extends HttpServlet {
             throws IOException, ServletException {
 
         request.setAttribute("itemPool", itemList);
-        RequestDispatcher view = request.getRequestDispatcher("WEB-INF/templates/webshop.jsp");
+        request.setAttribute("sum", getSum());
+        RequestDispatcher view = request.getRequestDispatcher("WEB-INF/templates/itemstore.jsp");
         view.forward(request, response);
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean isOnItemStore = false;
+
+            ItemStore.removeFromItemList(Utils.returnItem(request.getParameter("buttonhd"), itemList));
+
+
+
+
+        request.setAttribute("sum", getSum());
+        request.setAttribute("itemPool", itemList);
+        request.getRequestDispatcher("WEB-INF/templates/itemstore.jsp").forward(request, response);
     }
 
 

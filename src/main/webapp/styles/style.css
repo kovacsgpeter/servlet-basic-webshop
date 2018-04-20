@@ -3,9 +3,10 @@ th, td {
     background: burlywood;
     color: aqua;
 }
-table { position: absolute;
+table {
         width: 10%;
         background: burlywood}
 body {
     background-color: beige;
 }
+

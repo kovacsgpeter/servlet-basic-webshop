@@ -14,6 +14,10 @@ public class Item {
         return Float.toString(this.price);
     }
 
+    public float getPrice() {
+        return price;
+    }
+
     public Item(String name, float price) {
         this.id++;
         this.name = name;
