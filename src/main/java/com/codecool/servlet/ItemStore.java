@@ -1,5 +1,7 @@
 package com.codecool.servlet;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,31 +29,12 @@ public class ItemStore extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws IOException, ServletException {
 
-        PrintWriter out = response.getWriter();
-        String title = "Item Store";
+        request.setAttribute("itemPool", itemList);
+        RequestDispatcher view = request.getRequestDispatcher("WEB-INF/templates/webshop.jsp");
+        view.forward(request, response);
 
-        out.println(
-                "<html>\n" +
-                        "<head><title>" + title + "</title>\n");
-        out.println("<link rel='stylesheet' type='text/css' href='/styles/style.css' />");
-        out.println("</head>\n");
-
-        out.println(
-                "<body>\n" +
-                        "<h1 align = \"center\">" + title + "</h1>\n" +
-                        "<ul>\n"
-        );
-
-        out.println("<table>");
-        for (Item item: itemList){
-            out.println("<tr><td>"+item.nameToString() + "</td><td>" + item.priceToString() + "</td></tr>");
-        }
-        out.println("</table>");
-        out.println("</ul>\n" +
-                "<div>Visit another servlet: <a href=\"/ItemStore\">Visit the other servlet</a></div>" +
-                "</body></html>");
     }
 
 
